@@ -117,6 +117,92 @@
           <div class="empty-aside"><span class="status-dot"></span> READY FOR INPUT</div>
         </section>
 
+<section class="password-tool" id="password-analyzer">
+  <div class="section-heading">
+    <div>
+      <span class="section-index">05</span>
+      <h2>Password strength analyzer</h2>
+    </div>
+    <span class="live-label">
+      <span class="status-dot"></span> LOCAL ANALYSIS
+    </span>
+  </div>
+
+  <p class="card-intro">
+    Evaluate password length, predictability, character variety,
+    and common patterns. Analysis runs in your browser.
+  </p>
+
+  <label class="input-label" for="passwordInput">
+    Enter a test password
+  </label>
+
+  <div class="password-input-wrap">
+    <input
+      id="passwordInput"
+      type="password"
+      placeholder="Type a sample password..."
+      autocomplete="new-password"
+      autocapitalize="off"
+      spellcheck="false"
+      aria-describedby="passwordPrivacy"
+    >
+    <button type="button" id="togglePassword" class="text-button">
+      Show
+    </button>
+  </div>
+
+  <p class="password-privacy" id="passwordPrivacy">
+    Your input stays in this browser. Never enter a real password.
+  </p>
+
+  <div class="strength-heading">
+    <span class="mini-label">STRENGTH ASSESSMENT</span>
+    <strong id="strengthLabel" aria-live="polite">Not assessed</strong>
+  </div>
+
+  <div
+    class="strength-track"
+    role="progressbar"
+    aria-label="Password strength"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+    id="strengthProgress"
+  >
+    <span id="strengthBar"></span>
+  </div>
+
+  <div class="strength-meta">
+    <span id="strengthScore">Score: — / 100</span>
+    <span id="passwordLength">0 characters</span>
+  </div>
+
+  <div class="password-checks">
+    <h3>Security checks</h3>
+    <ul>
+      <li id="checkLength">○ At least 15 characters</li>
+      <li id="checkLower">○ Lowercase letters</li>
+      <li id="checkUpper">○ Uppercase letters</li>
+      <li id="checkNumber">○ Numbers</li>
+      <li id="checkSymbol">○ Symbols</li>
+      <li id="checkPattern">○ No obvious repeated or sequential patterns</li>
+    </ul>
+  </div>
+
+  <div class="password-advice">
+    <h3>Recommendations</h3>
+    <p id="passwordFeedback" aria-live="polite">
+      Enter a sample password to begin the analysis.
+    </p>
+  </div>
+
+  <p class="method-note">
+    Educational heuristic only. This is not a breach check or a guarantee
+    of security. Do not use this tool to test passwords you currently use.
+  </p>
+</section>
+
         <section class="methodology" id="methodology">
           <div class="method-title"><span class="section-index">04</span><h2>Read the numbers carefully</h2></div>
           <div class="method-columns">

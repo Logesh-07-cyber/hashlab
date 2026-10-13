@@ -159,3 +159,328 @@ input[type="range"]::-moz-range-thumb { width: 9px; height: 9px; border-radius: 
   .footer { flex-wrap: wrap; padding: 18px 0; }.footer > span:nth-child(2) { order: 3; width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* Password Strength Analyzer */
+.password-tool {
+  margin-top: 24px;
+  padding: 25px 28px;
+  background: rgba(23, 35, 45, .94);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.password-tool .card-intro {
+  max-width: 650px;
+}
+
+.password-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 12px;
+  background: var(--bg-deep);
+  border: 1px solid var(--line-bright);
+  border-radius: 8px;
+}
+
+#passwordInput {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 2px;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  outline: none;
+  font: 13px var(--mono);
+}
+
+#passwordInput:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+
+.password-privacy {
+  color: var(--faint);
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 10px 0 24px;
+}
+
+.strength-heading,
+.strength-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.strength-heading strong {
+  color: var(--teal);
+  font-size: 13px;
+}
+
+.strength-track {
+  height: 7px;
+  margin: 12px 0;
+  overflow: hidden;
+  background: var(--line);
+  border-radius: 20px;
+}
+
+#strengthBar {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--teal);
+  border-radius: inherit;
+  transition: width .2s ease, background .2s ease;
+}
+
+.strength-meta {
+  color: var(--muted);
+  font: 11px var(--mono);
+}
+
+.password-checks,
+.password-advice {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.password-checks h3,
+.password-advice h3 {
+  margin: 0 0 13px;
+  font-size: 13px;
+}
+
+.password-checks ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.password-checks li {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.password-checks li.pass {
+  color: var(--teal);
+}
+
+.password-advice p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .password-tool {
+    padding: 20px 16px;
+  }
+
+  .password-checks ul {
+    grid-template-columns: 1fr;
+  }
+
+  .strength-heading,
+  .strength-meta {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #strengthBar {
+    transition: none;
+  }
+}
+
+/* HashLab — Password Analyzer UI polish */
+.password-tool {
+  padding: 28px;
+  margin-top: 28px;
+  background: linear-gradient(145deg, #101b25, #0c141c);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, .15);
+}
+
+.password-tool .section-heading {
+  margin-bottom: 16px;
+}
+
+.password-tool .card-intro {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.password-tool .input-label,
+.password-tool .mini-label {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.password-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0b131b;
+  border: 1px solid var(--line-bright);
+  border-radius: 9px;
+  padding: 5px 12px;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.password-input-wrap:focus-within {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(53, 201, 167, .1);
+}
+
+.password-tool #passwordInput {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 12px 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font: 13px var(--mono);
+  box-shadow: none;
+}
+
+.password-tool #passwordInput:focus {
+  outline: none;
+}
+
+.password-tool .text-button {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #172631;
+  color: var(--teal);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.password-tool .text-button:hover {
+  background: #203640;
+}
+
+.password-tool .password-privacy {
+  margin: 10px 0 26px;
+  color: var(--faint);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.password-tool .strength-heading {
+  margin-bottom: 12px;
+}
+
+.password-tool .strength-heading strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.password-tool .strength-track {
+  height: 8px;
+  margin: 0 0 12px;
+  background: #263540;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.password-tool #strengthBar {
+  border-radius: 99px;
+}
+
+.password-tool .strength-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font: 11px var(--mono);
+}
+
+.password-tool .password-checks,
+.password-tool .password-advice {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(19, 31, 41, .7);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.password-tool .password-checks h3,
+.password-tool .password-advice h3 {
+  margin: 0 0 16px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.password-tool .password-checks ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.password-tool .password-checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.password-tool .password-checks li.pass {
+  color: var(--teal);
+}
+
+.password-tool .password-advice {
+  border-color: rgba(53, 201, 167, .22);
+}
+
+.password-tool .password-advice p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.password-tool .method-note {
+  margin-top: 18px;
+  color: var(--faint);
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .password-tool {
+    padding: 18px 14px;
+  }
+
+  .password-tool .password-checks,
+  .password-tool .password-advice {
+    padding: 15px;
+  }
+
+  .password-tool .password-checks ul {
+    grid-template-columns: 1fr;
+  }
+}

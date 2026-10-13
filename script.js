@@ -219,4 +219,185 @@
       errorMessage.hidden = false;
     }
   });
+  
+  // Password Strength Analyzer
+  const passwordInput = $("passwordInput");
+  const togglePassword = $("togglePassword");
+
+  if (passwordInput && togglePassword) {
+    const checks = {
+      length: $("checkLength"),
+      lower: $("checkLower"),
+      upper: $("checkUpper"),
+      number: $("checkNumber"),
+      symbol: $("checkSymbol"),
+      pattern: $("checkPattern")
+    };
+
+    const strengthNames = [
+      "Very weak",
+      "Weak",
+      "Fair",
+      "Good",
+      "Strong"
+    ];
+
+    function analyzePassword(password) {
+      const lower = /[a-z]/.test(password);
+      const upper = /[A-Z]/.test(password);
+      const number = /[0-9]/.test(password);
+      const symbol = /[^A-Za-z0-9]/.test(password);
+      const longEnough = password.length >= 15;
+
+      const normalized = password.toLowerCase();
+      const commonPasswords = new Set([
+        "password", "password123", "12345678",
+        "qwerty123", "admin123", "letmein",
+        "iloveyou", "welcome123"
+      ]);
+
+      const common = commonPasswords.has(normalized);
+      const repeated = /(.)\1{2,}/.test(password);
+      const sequential =
+        /(?:0123|1234|2345|3456|4567|5678|6789|abcd|bcde|cdef|qwer|asdf)/i
+          .test(password);
+
+      const hasPattern = !common && !repeated && !sequential;
+
+      // A transparent educational heuristic, not a true entropy calculation.
+      let score = 0;
+
+      if (password.length >= 8) score += 10;
+      if (password.length >= 12) score += 15;
+      if (password.length >= 15) score += 20;
+      if (password.length >= 20) score += 10;
+      if (lower) score += 10;
+      if (upper) score += 10;
+      if (number) score += 10;
+      if (symbol) score += 15;
+      if (hasPattern) score += 10;
+
+      score = Math.min(100, score);
+
+      // Predictable passwords must never receive a high rating.
+      if (common) score = Math.min(score, 15);
+      if (repeated || sequential) score = Math.min(score, 45);
+
+      let level = 0;
+      if (score >= 80 && longEnough && hasPattern) level = 4;
+      else if (score >= 60) level = 3;
+      else if (score >= 40) level = 2;
+      else if (score >= 20) level = 1;
+
+      const tips = [];
+
+      if (common) {
+        tips.push("Avoid common passwords and predictable phrases.");
+      }
+      if (password.length < 15) {
+        tips.push("Use a longer password or passphrase (15+ characters).");
+      }
+      if (repeated || sequential) {
+        tips.push("Avoid repeated characters and predictable sequences.");
+      }
+      if (!lower || !upper || !number || !symbol) {
+        tips.push("Consider varied character types, but prioritize length.");
+      }
+      if (password.length >= 15 && hasPattern && score >= 80) {
+        tips.push("Good result. Use a unique password for every account.");
+      }
+      if (password.length === 0) {
+        tips.push("Enter a sample password to begin the analysis.");
+      }
+
+      return {
+        score,
+        level,
+        lower,
+        upper,
+        number,
+        symbol,
+        longEnough,
+        hasPattern,
+        tips
+      };
+    }
+
+    function updateCheck(element, passed, text) {
+      element.classList.toggle("pass", passed);
+      element.textContent = `${passed ? "✓" : "○"} ${text}`;
+    }
+
+    function renderPasswordAnalysis() {
+      const password = passwordInput.value;
+      const label = $("strengthLabel");
+      const bar = $("strengthBar");
+      const progress = $("strengthProgress");
+      const scoreText = $("strengthScore");
+      const lengthText = $("passwordLength");
+      const feedback = $("passwordFeedback");
+
+      if (!password) {
+        label.textContent = "Not assessed";
+        label.style.color = "var(--teal)";
+        bar.style.width = "0%";
+        progress.setAttribute("aria-valuenow", "0");
+        scoreText.textContent = "Score: — / 100";
+        lengthText.textContent = "0 characters";
+        feedback.textContent =
+          "Enter a sample password to begin the analysis.";
+
+        Object.values(checks).forEach(element => {
+          element.classList.remove("pass");
+          element.textContent = "○ " +
+            element.textContent.replace(/^[✓○]\s*/, "");
+        });
+        return;
+      }
+
+      const result = analyzePassword(password);
+      const colors = [
+        "var(--red)",
+        "var(--red)",
+        "var(--orange)",
+        "var(--teal-dark)",
+        "var(--teal)"
+      ];
+
+      label.textContent = strengthNames[result.level];
+      label.style.color = colors[result.level];
+      bar.style.width = `${result.score}%`;
+      bar.style.background = colors[result.level];
+      progress.setAttribute("aria-valuenow", String(result.score));
+
+      scoreText.textContent = `Score: ${result.score} / 100`;
+      lengthText.textContent =
+        `${password.length} character${password.length === 1 ? "" : "s"}`;
+
+      updateCheck(checks.length, result.longEnough,
+        "At least 15 characters");
+      updateCheck(checks.lower, result.lower,
+        "Lowercase letters");
+      updateCheck(checks.upper, result.upper,
+        "Uppercase letters");
+      updateCheck(checks.number, result.number,
+        "Numbers");
+      updateCheck(checks.symbol, result.symbol,
+        "Symbols");
+      updateCheck(checks.pattern, result.hasPattern,
+        "No obvious repeated or sequential patterns");
+
+      feedback.textContent = result.tips.join(" ");
+    }
+
+    passwordInput.addEventListener("input", renderPasswordAnalysis);
+
+    togglePassword.addEventListener("click", () => {
+      const show = passwordInput.type === "password";
+      passwordInput.type = show ? "text" : "password";
+      togglePassword.textContent = show ? "Hide" : "Show";
+      togglePassword.setAttribute("aria-pressed", String(show));
+    });
+  }
+
 })();

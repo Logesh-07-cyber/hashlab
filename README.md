@@ -1,32 +1,33 @@
-# Hashlab — Hash & Password Analyzer
+# HashLab — Hash & Password Analyzer
 
-Hashlab is a browser-based cybersecurity learning tool that suggests possible hash formats, assesses password strength, and estimates theoretical password-guessing time under different assumptions.
+HashLab is a browser-based cybersecurity learning tool built with HTML, CSS, JavaScript, and Vite. It helps users explore possible hash formats, evaluate password strength, and understand theoretical password-guessing time under different assumptions.
 
 ## Features
 
-- Heuristic identification of common hash formats, with ambiguity notices when formats overlap.
-- Password strength feedback based on length, character variety, common words, repeated characters, and predictable patterns.
-- Illustrative crack-time estimates for online throttling, a single CPU, a single GPU, and a GPU cluster.
-- Interactive password length and character-set controls, plus sample, copy, and clear actions.
-- Responsive interface with keyboard focus states and reduced-motion support.
-- Analysis runs locally in the browser; no backend or API key is required.
+- **Hash identification:** Suggests possible formats for common hashes and highlights ambiguity when multiple algorithms may match.
+- **Password strength analysis:** Evaluates length, character variety, common passwords, repeated characters, and predictable patterns.
+- **Crack-time estimation:** Illustrates theoretical guessing times for online throttling, a single CPU, a single GPU, and a GPU cluster.
+- **Interactive controls:** Adjust password length and character sets, use sample inputs, and access copy and clear actions.
+- **Responsive interface:** Supports different screen sizes, keyboard focus states, and reduced-motion preferences.
+- **Privacy-focused design:** Performs analysis locally in the browser without requiring a backend or API key.
 
-## Use Hashlab in either of these ways
+## Live Demo
 
-### Option 1: Open the live website
+**Live website:** Add your deployed website URL here.
 
-Once this repository has been deployed, you can open the published website in any modern browser. No Node.js, npm, or VS Code is required. Add your deployed URL here after publishing:
+> The GitHub repository is not automatically a live website. Deploy the project using GitHub Pages, Vercel, or Netlify before adding your public URL.
 
-**Live demo:** `Add your deployed website URL here`
+## Run Locally
 
-> Pushing the repository to GitHub does not automatically publish a live website. Deploy it with GitHub Pages, Vercel, or another static-site host first.
+### Requirements
 
-### Option 2: Run it locally with npm and Vite
+- Node.js
+- npm
 
-**Requirements:** Node.js and npm.
+### Installation
 
 1. Clone or download this repository.
-2. Open a terminal in the project root—the folder containing `package.json`.
+2. Open a terminal in the project root, where `package.json` is located.
 3. Install dependencies:
 
    ```bash
@@ -39,41 +40,36 @@ Once this repository has been deployed, you can open the published website in an
    npm run dev
    ```
 
-5. Open the local URL shown in the terminal (usually `http://localhost:5173/`).
+5. Open the local URL printed in the terminal, usually `http://localhost:5173/`.
 
-Useful commands:
+### Useful Commands
 
 ```bash
+npm run dev      # Start the development server
 npm run build    # Build the production site into dist/
 npm run preview  # Preview the production build locally
 ```
 
-You can also open `index.html` directly for a simple static preview, although Vite is recommended for development and production builds.
+## Deployment
 
-## Deploying the website
+You can deploy this Vite project using Vercel or Netlify by importing the GitHub repository.
 
-You can deploy the Vite project to Vercel or Netlify by importing the GitHub repository and using:
+| Setting | Value |
+|---|---|
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Install command | `npm install` |
 
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
+For GitHub Pages, configure a deployment workflow to publish the generated `dist/` directory. Ensure the Vite base path matches your deployment URL.
 
-For GitHub Pages, configure a deployment workflow to publish the generated `dist/` directory. The Vite configuration uses relative asset paths (`base: './'`) to support project-site paths.
+## Tech Stack
 
-## Tech stack
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Vite
 
-HTML · CSS · Vanilla JavaScript · Vite
-
-## Important limitations
-
-- A hash-format match is not definitive algorithm identification. Different algorithms can share a digest length and encoding.
-- Crack-time values are illustrative estimates, not measured benchmarks. They use example guessing rates and assumptions about a uniformly random password and brute-force search.
-- These estimates model a hypothetical password search space; they do not predict how quickly the submitted hash itself can be cracked.
-- Actual results depend on the algorithm, salt, work factor, hardware, implementation, password choice, and attack strategy. Wordlists, predictable patterns, reused passwords, and leaked credentials can change results substantially.
-- Parameterized password-hashing algorithms cannot be estimated accurately without their full configuration; displayed rates for these formats are placeholders.
-- Hashlab does not perform actual hash cracking or password recovery. The password-strength analyzer is a lightweight educational heuristic, not a breach-database check or a guarantee of security.
-- Password analysis happens in the browser and the app does not upload or store the entered password. For safety, never enter a password you currently use into a demo tool.
-
-## Project structure
+## Project Structure
 
 ```text
 hashlab/
@@ -87,20 +83,24 @@ hashlab/
 └── .gitignore
 ```
 
-## Responsible use
+## Important Limitations
 
-Use this tool for learning, defensive auditing, and data you are authorized to inspect.
+- Hash-format identification is heuristic. A matching digest length or encoding does not prove which algorithm generated a hash.
+- Crack-time values are illustrative estimates based on assumed guessing rates and search spaces. They are not measured benchmarks.
+- These estimates do not predict how quickly a particular submitted hash can be cracked.
+- Real attack times depend on the algorithm, salt, work factor, hardware, implementation, password choice, and attack strategy.
+- Wordlists, predictable patterns, reused passwords, and leaked credentials can significantly affect password security.
+- Parameterized password-hashing algorithms require their full configuration for meaningful estimates. Placeholder rates must not be interpreted as accurate benchmarks.
+- HashLab does not perform actual hash cracking or password recovery.
+- Password strength results are educational heuristics, not a guarantee of security or a breach-database check.
+- Password analysis runs locally in the browser. The application is designed not to upload or store entered passwords. Avoid entering passwords you currently use.
 
----
+## Responsible Use
 
-## Connect with me
+Use HashLab for cybersecurity education, defensive auditing, and data you are authorized to inspect. Do not use it to access accounts or data without permission.
 
-<p align="left">
-  <a href="https://www.linkedin.com/in/k-logesh-prasanna-cyber/">
-    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn" />
-  </a>
-  
-</p>
+## Connect With Me
 
-- **LinkedIn:** [K. Logesh Prasanna](https://www.linkedin.com/in/k-logesh-prasanna-cyber/)
+**K. Logesh Prasanna**
 
+[Connect with me on LinkedIn](https://www.linkedin.com/in/k-logesh-prasanna-cyber/)
