@@ -99,10 +99,10 @@ Use this tool for learning, defensive auditing, and data you are authorized to i
   <a href="https://www.linkedin.com/in/k-logesh-prasanna-cyber/">
     <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn" />
   </a>
-  <a href="mailto:logeshprasanna2007@gmail.com">
+  <a href="mailto:237409751+Logesh-07-cyber@users.noreply.github.com">
     <img src="https://img.shields.io/badge/Email-Contact%20me-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email me" />
   </a>
 </p>
 
 - **LinkedIn:** [K. Logesh Prasanna](https://www.linkedin.com/in/k-logesh-prasanna-cyber/)
-- **Email:** [logeshprasanna2007@gmail.com](mailto:logeshprasanna2007@gmail.com)
+- **Email:** [237409751+Logesh-07-cyber@users.noreply.github.com](mailto:237409751+Logesh-07-cyber@users.noreply.github.com)
